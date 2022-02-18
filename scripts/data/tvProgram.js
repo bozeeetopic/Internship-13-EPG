@@ -7,10 +7,9 @@ class tvProgram {
     endTime,
     cathegory,
     reprise,
-    channelId,
     favourite,
-    adult,
-    rating
+    rating,
+    channelId
   ) {
     this.id = id;
     this.name = name;
@@ -19,11 +18,10 @@ class tvProgram {
     this.endTime = endTime;
     this.cathegory = cathegory;
     this.reprise = reprise;
-    this.channelId = channelId;
     this.favourite = favourite;
-    this.adult = adult;
     this.rating = rating;
+    this.channelId = channelId;
   }
 }
 
-export default tvProgram;
+export { tvProgram };

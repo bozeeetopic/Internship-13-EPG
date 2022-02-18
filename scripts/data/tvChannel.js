@@ -6,4 +6,4 @@ class tvChannel {
   }
 }
 
-export default tvChannel;
+export { tvChannel };
