@@ -1,7 +1,6 @@
-import { time } from "./data/time.js";
+import { Time } from "./data/time.js";
 import { programs, channels } from "./data/tvSchedule.js";
 import { category } from "./enums/category.js";
-import { isFirstTimeSmaller } from "./helpers/timeComparer.js";
 
 let pin = localStorage.getItem("pin");
 pin = pin ? pin : "1111";
@@ -9,16 +8,16 @@ localStorage.setItem("pin", pin);
 
 do {
   let newDate = new Date();
-  let timeNow = new time(
-    newDate.getHours,
-    newDate.getMinutes,
-    newDate.getSeconds
+  let timeNow = new Time(
+    newDate.getHours(),
+    newDate.getMinutes(),
+    newDate.getSeconds()
   );
+  console.log(timeNow.prettyPrint());
   console.table(
     programs.filter(
       (p) =>
-        isFirstTimeSmaller(p.startTime, timeNow) &&
-        isFirstTimeSmaller(timeNow, p.endTime)
+        p.startTime.isEarlierThan(timeNow) && timeNow.isEarlierThan(p.endTime)
     )
   );
 } while (confirm());

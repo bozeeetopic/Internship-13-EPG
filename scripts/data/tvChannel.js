@@ -1,4 +1,4 @@
-class tvChannel {
+class TvChannel {
   constructor(id, name, programs) {
     this.id = id;
     this.name = name;
@@ -6,4 +6,4 @@ class tvChannel {
   }
 }
 
-export { tvChannel };
+export { TvChannel };

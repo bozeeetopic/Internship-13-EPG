@@ -1,4 +1,4 @@
-class tvProgram {
+class TvProgram {
   constructor(
     id,
     name,
@@ -24,4 +24,4 @@ class tvProgram {
   }
 }
 
-export { tvProgram };
+export { TvProgram };
