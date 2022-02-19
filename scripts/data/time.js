@@ -4,6 +4,9 @@ class time {
     this.minutes = minutes;
     this.seconds = seconds;
   }
+  toString() {
+    return `${this.hours}:${this.minutes}:${this.seconds}`;
+  }
 }
 
 export { time };

@@ -1,7 +1,7 @@
-import { tvChannel } from "./tvChannel";
-import { tvProgram } from "./tvProgram";
-import { time } from "./time";
-import { category } from "../enums/category";
+import { tvChannel } from "./tvChannel.js";
+import { tvProgram } from "./tvProgram.js";
+import { time } from "./time.js";
+import { category } from "../enums/category.js";
 
 let programs = [
   new tvProgram(
@@ -140,7 +140,7 @@ let programs = [
   new tvProgram(
     12,
     "Who killed captain Alex",
-    "Best of da best nigeria production film, very good",
+    "Best of da best uganda production film, very good",
     new time(0, 0, 0),
     new time(2, 30, 0),
     category.movie,
@@ -248,7 +248,7 @@ let programs = [
   new tvProgram(
     21,
     "Odbojka",
-    "Haikyuu za men-of-culture",
+    "Haikyuu za ljude od kulture",
     new time(18, 0, 0),
     new time(19, 0, 0),
     category.kids,
@@ -259,11 +259,23 @@ let programs = [
   ),
   new tvProgram(
     22,
-    "Odbojka",
-    "Haikyuu za men-of-culture",
+    "Men of Steel",
+    "Kovanje katane",
     new time(19, 0, 0),
     new time(20, 0, 0),
-    category.kids,
+    category.documentary,
+    false,
+    true,
+    10,
+    2
+  ),
+  new tvProgram(
+    23,
+    "Ero show",
+    "Hot milfs in your area",
+    new time(20, 0, 0),
+    new time(24, 0, 0),
+    category.ero,
     false,
     true,
     10,
@@ -271,13 +283,363 @@ let programs = [
   ),
 
   new tvProgram(
+    24,
+    "Tarot show",
+    "Ovaj put čita iz kore od banane",
+    new time(0, 0, 0),
+    new time(4, 0, 0),
+    category.commercial,
+    false,
+    false,
     3,
+    3
+  ),
+  new tvProgram(
+    25,
+    "Shaolin football",
+    "They kick balls and kick balls",
+    new time(4, 0, 0),
+    new time(6, 0, 0),
+    category.movie,
+    false,
+    false,
+    10,
+    3
+  ),
+  new tvProgram(
+    26,
+    "Pokemoni",
+    "Ash u 24. sezoni još uvik napada ground pokemone električnim napadima",
+    new time(6, 0, 0),
+    new time(6, 20, 0),
+    category.kids,
+    false,
+    false,
+    10,
+    3
+  ),
+  new tvProgram(
+    27,
+    "Yu-Gi-Oh",
+    "Srce u kartama",
+    new time(6, 20, 0),
+    new time(6, 40, 0),
+    category.kids,
+    false,
+    false,
+    10,
+    3
+  ),
+  new tvProgram(
+    28,
+    "Dragonball",
+    "Sponsored by vegeta",
+    new time(6, 40, 0),
+    new time(7, 0, 0),
+    category.kids,
+    false,
+    false,
+    10,
+    3
+  ),
+  new tvProgram(
+    29,
+    "Tengen Toppa Gurren Lagann",
+    "Sponsored by Bauhaus bušilice",
+    new time(7, 0, 0),
+    new time(7, 20, 0),
+    category.kids,
+    false,
+    false,
+    10,
+    3
+  ),
+  new tvProgram(
+    30,
+    "Digimoni",
+    "Idk ja sam pokemon osoba",
+    new time(7, 20, 0),
+    new time(7, 40, 0),
+    category.kids,
+    false,
+    false,
+    9,
+    3
+  ),
+  new tvProgram(
+    31,
+    "Beyblade",
+    "Sponsored by Dead or Alive",
+    new time(7, 40, 0),
+    new time(8, 0, 0),
+    category.kids,
+    false,
+    false,
+    9,
+    3
+  ),
+  new tvProgram(
+    32,
+    "Serije",
+    "Španjolske, turske pa naše",
+    new time(8, 0, 0),
+    new time(17, 0, 0),
+    category.soapOpera,
+    false,
+    false,
+    3,
+    3
+  ),
+  new tvProgram(
+    33,
+    "Serije",
+    "Španjolske, turske pa naše",
+    new time(17, 0, 0),
+    new time(24, 0, 0),
+    category.soapOpera,
+    true,
+    false,
+    3,
+    3
+  ),
+
+  new tvProgram(
+    34,
+    "Pornjava",
+    "Ima svašta",
+    new time(0, 0, 0),
+    new time(5, 0, 0),
+    category.ero,
+    false,
+    false,
+    10,
+    4
+  ),
+  new tvProgram(
+    35,
+    "Crtani",
+    "Ima svašta",
+    new time(5, 0, 0),
+    new time(8, 0, 0),
+    category.kids,
+    false,
+    false,
+    10,
+    4
+  ),
+  new tvProgram(
+    36,
+    "Dokumentarci",
+    "Ima svašta",
+    new time(8, 0, 0),
+    new time(12, 0, 0),
+    category.documentary,
+    false,
+    false,
+    10,
+    4
+  ),
+  new tvProgram(
+    37,
+    "Muzika",
+    "Ima svašta",
+    new time(12, 0, 0),
+    new time(15, 0, 0),
+    category.music,
+    false,
+    false,
+    10,
+    4
+  ),
+  new tvProgram(
+    38,
+    "Kako je grinč ukrao božić",
+    "Kako indeed",
+    new time(15, 0, 0),
+    new time(17, 0, 0),
+    category.movie,
+    false,
+    false,
+    10,
+    4
+  ),
+  new tvProgram(
+    39,
+    "Reklame",
+    "Ima svašta",
+    new time(17, 0, 0),
+    new time(18, 0, 0),
+    category.commercial,
+    false,
+    false,
+    1,
+    4
+  ),
+  new tvProgram(
+    40,
+    "Serije",
+    "Ima svašta",
+    new time(18, 0, 0),
+    new time(19, 0, 0),
+    category.soapOpera,
+    false,
+    false,
+    6,
+    4
+  ),
+  new tvProgram(
+    41,
+    "Dnevnik Nove TV",
+    "Ima svašta",
+    new time(19, 0, 0),
+    new time(20, 0, 0),
+    category.documentary,
+    false,
+    false,
+    4,
+    4
+  ),
+  new tvProgram(
+    42,
+    "Provjereno",
+    "Dnevnik part 2",
+    new time(20, 0, 0),
+    new time(21, 0, 0),
+    category.documentary,
+    false,
+    false,
+    10,
+    4
+  ),
+  new tvProgram(
+    43,
+    "Pornjava",
+    "Ima svašta",
+    new time(21, 0, 0),
+    new time(24, 0, 0),
+    category.ero,
+    true,
+    false,
+    10,
+    4
+  ),
+
+  new tvProgram(
+    44,
     "Bujica Velimira Bujanca",
     "Woke based hrvatski show",
     new time(0, 0, 0),
-    new time(23, 59, 59),
+    new time(4, 0, 0),
     category.documentary,
     false,
+    true,
+    10,
+    5
+  ),
+  new tvProgram(
+    45,
+    "Bujica Velimira Bujanca",
+    "Woke based hrvatski show",
+    new time(4, 0, 0),
+    new time(6, 0, 0),
+    category.documentary,
+    true,
+    true,
+    10,
+    6
+  ),
+  new tvProgram(
+    46,
+    "Bujica Velimira Bujanca",
+    "Woke based hrvatski show",
+    new time(6, 0, 0),
+    new time(8, 0, 0),
+    category.documentary,
+    true,
+    true,
+    10,
+    6
+  ),
+  new tvProgram(
+    47,
+    "Bujica Velimira Bujanca",
+    "Woke based hrvatski show",
+    new time(8, 0, 0),
+    new time(10, 0, 0),
+    category.documentary,
+    true,
+    true,
+    10,
+    6
+  ),
+  new tvProgram(
+    48,
+    "Bujica Velimira Bujanca",
+    "Woke based hrvatski show",
+    new time(10, 0, 0),
+    new time(12, 0, 0),
+    category.documentary,
+    true,
+    true,
+    10,
+    6
+  ),
+  new tvProgram(
+    49,
+    "Bujica Velimira Bujanca",
+    "Woke based hrvatski show",
+    new time(12, 0, 0),
+    new time(14, 0, 0),
+    category.documentary,
+    true,
+    true,
+    10,
+    6
+  ),
+  new tvProgram(
+    50,
+    "Bujica Velimira Bujanca",
+    "Woke based hrvatski show",
+    new time(14, 0, 0),
+    new time(16, 0, 0),
+    category.documentary,
+    true,
+    true,
+    10,
+    6
+  ),
+  new tvProgram(
+    51,
+    "Bujica Velimira Bujanca",
+    "Woke based hrvatski show",
+    new time(16, 0, 0),
+    new time(18, 0, 0),
+    category.documentary,
+    true,
+    true,
+    10,
+    6
+  ),
+  new tvProgram(
+    52,
+    "Bujica Velimira Bujanca",
+    "Woke based hrvatski show",
+    new time(18, 0, 0),
+    new time(20, 0, 0),
+    category.documentary,
+    true,
+    true,
+    10,
+    6
+  ),
+  new tvProgram(
+    53,
+    "Bujica Velimira Bujanca",
+    "Woke based hrvatski show",
+    new time(20, 0, 0),
+    new time(24, 0, 0),
+    category.documentary,
+    true,
     true,
     10,
     6
@@ -289,8 +651,7 @@ let channels = [
   new tvChannel(2, "Hrt 2", []),
   new tvChannel(3, "RTL", []),
   new tvChannel(4, "Nova TV", []),
-  new tvChannel(5, "RTL Kockica", []),
-  new tvChannel(6, "TV Jadran", []),
+  new tvChannel(5, "TV Jadran", []),
 ];
 channels.forEach(
   (c) =>
