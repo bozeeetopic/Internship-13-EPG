@@ -14,3 +14,4 @@ function programDetails(program, channel) {
   }
   alert(program.prettyPrint(channel.name));
 }
+export { programDetails };

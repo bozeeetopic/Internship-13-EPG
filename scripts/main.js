@@ -1,10 +1,14 @@
 import { programs, channels } from "./data/tvSchedule.js";
 import { actionType } from "./enums/actionType.js";
+import { addRating } from "./actions/addRating.js";
+import { changePin } from "./actions/changePin.js";
+import { favouritesAction } from "./actions/favouritesAction.js";
 import { actionsList } from "./actions/actionsList.js";
+import { programDetails } from "./actions/programDetails.js";
 import { chooseNumberBetween } from "./helpers/numberInput.js";
 import { programsListToString } from "./helpers/programsListToString.js";
 import { currentDateToTime } from "./helpers/currentDateToTime.js";
-import { changePin } from "./actions/changePin.js";
+import { removeForbiddenActions } from "./helpers/removeForbiddenActions.js";
 
 let timeNow = currentDateToTime();
 
@@ -17,21 +21,28 @@ let schedule = programList.filter(
     timeNow.isEarlierThan(program.endTime)
 );
 let currentChannel = 0;
+let choice;
+let newActionsList;
 
 do {
   let scheduleString = programsListToString(schedule, channels, currentChannel);
+
+  newActionsList = removeForbiddenActions(
+    actionsList,
+    schedule[currentChannel]
+  );
   let actionString = "Unesi broj uz akciju za njeno izvođenje:\n";
-  for (let i = 0; i < actionsList.length; i++) {
-    actionString += `${i + 1}. - ${actionsList[i].name}\n`;
+  for (let i = 0; i < newActionsList.length; i++) {
+    actionString += `${i + 1}. - ${newActionsList[i].name}\n`;
   }
 
   choice = chooseNumberBetween(
     scheduleString + actionString,
     1,
-    actionsList.length
+    newActionsList.length
   );
 
-  switch (actionsList[choice - 1].function) {
+  switch (newActionsList[choice - 1].function) {
     case actionType.channelUp:
       currentChannel = currentChannel ? 4 : currentChannel - 1;
       timeNow = currentDateToTime();
@@ -69,7 +80,7 @@ do {
       break;
 
     case actionType.favouriteAction:
-      favouriteAction(programList, schedule[currentChannel].id);
+      favouritesAction(programList, schedule[currentChannel].id);
       break;
 
     case actionType.addRating:
@@ -97,4 +108,4 @@ do {
       changePin();
       break;
   }
-} while (choice !== actionsList.length);
+} while (choice !== newActionsList.length);

@@ -27,8 +27,8 @@ class TvProgram {
     let stringToReturn = `Ime: ${this.name}\n
     Opis: ${this.description}\n
     Ime kanala: ${channelName}\n
-    Raspored: ${this.startTime} - ${this.endTime}\n
-    Žanr: ${category[this.category]}\n
+    Raspored: ${this.startTime.prettyPrint()} - ${this.endTime.prettyPrint()}\n
+    Žanr: ${Object.getOwnPropertyNames(category)[this.category - 1]}\n
     Ocjena: ${this.rating}\n`;
 
     stringToReturn += this.reprise ? "Repriza\n" : "";
@@ -36,8 +36,11 @@ class TvProgram {
 
     return stringToReturn;
   }
+
   shortPrint() {
-    return `${this.name}      ${this.startTime} - ${this.endTime}`;
+    return `${
+      this.name
+    }      ${this.startTime.prettyPrint()} - ${this.endTime.prettyPrint()}`;
   }
 }
 

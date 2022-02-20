@@ -1,3 +1,5 @@
+import { addZeroToSingleDigit } from "../helpers/addZeroToSingleDigit.js";
+
 class Time {
   constructor(hours, minutes, seconds) {
     this.hours = hours;
@@ -6,7 +8,13 @@ class Time {
   }
 
   prettyPrint() {
-    return `${this.hours}:${this.minutes}:${this.seconds}`;
+    return this.seconds
+      ? `${addZeroToSingleDigit(this.hours)}:${addZeroToSingleDigit(
+          this.minutes
+        )} ${addZeroToSingleDigit(this.seconds)}s`
+      : `${addZeroToSingleDigit(this.hours)}:${addZeroToSingleDigit(
+          this.minutes
+        )}`;
   }
 
   isEarlierThan(time2) {

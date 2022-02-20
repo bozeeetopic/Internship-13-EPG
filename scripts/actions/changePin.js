@@ -7,6 +7,9 @@ function changePin() {
   if (pin == userPinInput) {
     do {
       userPinInput = prompt("Unesite novi pin!");
+      if (!userPinInput) {
+        return;
+      }
     } while (
       userPinInput.length < 4 ||
       userPinInput.length > 8 ||
