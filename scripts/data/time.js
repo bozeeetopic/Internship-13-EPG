@@ -18,9 +18,25 @@ class Time {
       ? true
       : this.minutes > time2.minutes
       ? false
-      : this.seconds <= time2.seconds
+      : this.seconds < time2.seconds
       ? true
       : false;
+  }
+
+  equals(time2) {
+    return this.hours < time2.hours
+      ? false
+      : this.hours > time2.hours
+      ? false
+      : this.minutes < time2.minutes
+      ? false
+      : this.minutes > time2.minutes
+      ? false
+      : this.seconds < time2.seconds
+      ? false
+      : this.seconds > time2.seconds
+      ? false
+      : true;
   }
 }
 

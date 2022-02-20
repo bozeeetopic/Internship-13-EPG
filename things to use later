@@ -1,0 +1,37 @@
+import { Time } from "./data/time.js";
+import { programs, channels } from "./data/tvSchedule.js";
+import { category } from "./enums/category.js";
+import { actionType } from "./enums/actionType.js";
+import { actionsList } from "./actions/actionsList.js";
+
+let pin = localStorage.getItem("pin");
+pin = pin ? pin : "1111";
+//localStorage.setItem("pin", pin);
+
+let favourites = localStorage.getItem("favourites");
+
+let newDate = new Date();
+let timeNow = new Time(
+  newDate.getHours(),
+  newDate.getMinutes(),
+  newDate.getSeconds()
+);
+
+let programs2 = programs.map(
+  (program) =>
+    (program.favourite = program.endTime.isEarlierThan(timeNow)
+      ? false
+      : program.favourite)
+);
+do {
+  console.log(timeNow.prettyPrint());
+
+  console.table(
+    programs.filter(
+      (program) =>
+        program.startTime.isEarlierThan(timeNow) &&
+        timeNow.isEarlierThan(program.endTime)
+    )
+  );
+  console.table(programs2);
+} while (confirm());
