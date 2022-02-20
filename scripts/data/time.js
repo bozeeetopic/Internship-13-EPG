@@ -19,16 +19,16 @@ class Time {
 
   isEarlierThan(time2) {
     return this.hours < time2.hours
-      ? true
+      ? false
       : this.hours > time2.hours
-      ? false
+      ? true
       : this.minutes < time2.minutes
-      ? true
-      : this.minutes > time2.minutes
       ? false
-      : this.seconds < time2.seconds
+      : this.minutes > time2.minutes
       ? true
-      : false;
+      : this.seconds < time2.seconds
+      ? false
+      : true;
   }
 
   equals(time2) {

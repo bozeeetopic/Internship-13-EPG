@@ -8,7 +8,7 @@ import { programDetails } from "./actions/programDetails.js";
 import { chooseNumberBetween } from "./helpers/numberInput.js";
 import { programsListToString } from "./helpers/programsListToString.js";
 import { currentDateToTime } from "./helpers/currentDateToTime.js";
-import { removeForbiddenActions } from "./helpers/removeForbiddenActions.js";
+import { Time } from "./data/time.js";
 
 let timeNow = currentDateToTime();
 
@@ -17,66 +17,82 @@ programList = programList ? JSON.parse(programList) : [...programs];
 
 let schedule = programList.filter(
   (program) =>
-    program.startTime.isEarlierThan(timeNow) &&
-    timeNow.isEarlierThan(program.endTime)
+    program.endTime.isEarlierThan(timeNow) &&
+    timeNow.isEarlierThan(program.startTime)
 );
 let currentChannel = 0;
 let choice;
-let newActionsList;
 
 do {
   let scheduleString = programsListToString(schedule, channels, currentChannel);
 
-  newActionsList = removeForbiddenActions(
-    actionsList,
-    schedule[currentChannel]
-  );
   let actionString = "Unesi broj uz akciju za njeno izvođenje:\n";
-  for (let i = 0; i < newActionsList.length; i++) {
-    actionString += `${i + 1}. - ${newActionsList[i].name}\n`;
+  for (let i = 0; i < actionsList.length; i++) {
+    actionString += `${i + 1}. - ${actionsList[i].name}\n`;
   }
 
   choice = chooseNumberBetween(
     scheduleString + actionString,
     1,
-    newActionsList.length
+    actionsList.length
   );
+  if (!choice) {
+    choice = 10;
+  }
 
-  switch (newActionsList[choice - 1].function) {
+  switch (actionsList[choice - 1].function) {
     case actionType.channelUp:
-      currentChannel = currentChannel == 0 ? 4 : currentChannel - 1;
+      currentChannel =
+        currentChannel == 0 ? channels.length - 1 : currentChannel - 1;
       timeNow = currentDateToTime();
       schedule = programList.filter(
         (program) =>
-          program.startTime.isEarlierThan(timeNow) &&
-          timeNow.isEarlierThan(program.endTime)
+          program.endTime.isEarlierThan(timeNow) &&
+          timeNow.isEarlierThan(program.startTime)
       );
       break;
 
     case actionType.channelDown:
-      currentChannel = currentChannel === 4 ? 0 : currentChannel + 1;
+      currentChannel =
+        currentChannel === channels.length - 1 ? 0 : currentChannel + 1;
       timeNow = currentDateToTime();
       schedule = programList.filter(
         (program) =>
-          program.startTime.isEarlierThan(timeNow) &&
-          timeNow.isEarlierThan(program.endTime)
+          program.endTime.isEarlierThan(timeNow) &&
+          timeNow.isEarlierThan(program.startTime)
       );
       break;
 
     case actionType.previousProgram:
-      schedule[currentChannel] = programList.find(
-        (program) =>
-          program.channelId === schedule[currentChannel].channelId &&
-          program.endTime.equals(schedule[currentChannel].startTime)
-      );
+      schedule[currentChannel] = schedule[currentChannel].startTime.equals(
+        new Time(0, 0, 0)
+      )
+        ? programList.find(
+            (program) =>
+              program.channelId === schedule[currentChannel].channelId &&
+              program.endTime.equals(new Time(24, 0, 0))
+          )
+        : programList.find(
+            (program) =>
+              program.channelId === schedule[currentChannel].channelId &&
+              program.endTime.equals(schedule[currentChannel].startTime)
+          );
       break;
 
     case actionType.nextProgram:
-      schedule[currentChannel] = programList.find(
-        (program) =>
-          program.channelId === schedule[currentChannel].channelId &&
-          program.startTime.equals(schedule[currentChannel].endTime)
-      );
+      schedule[currentChannel] = schedule[currentChannel].endTime.equals(
+        new Time(24, 0, 0)
+      )
+        ? programList.find(
+            (program) =>
+              program.channelId === schedule[currentChannel].channelId &&
+              program.startTime.equals(new Time(0, 0, 0))
+          )
+        : programList.find(
+            (program) =>
+              program.channelId === schedule[currentChannel].channelId &&
+              program.startTime.equals(schedule[currentChannel].endTime)
+          );
       break;
 
     case actionType.favouriteAction:
@@ -97,10 +113,12 @@ do {
       break;
 
     case actionType.favourites:
-      let favouritePrograms = programList.filter(
-        (program) =>
-          program.favourite === true && program.endTime.isEarlierThan(timeNow)
-      );
+      let favouritePrograms = [
+        ...programList.filter(
+          (program) =>
+            program.favourite === true && program.endTime.isEarlierThan(timeNow)
+        ),
+      ];
       alert(programsListToString(favouritePrograms, channels, -1));
       break;
 
@@ -108,4 +126,4 @@ do {
       changePin();
       break;
   }
-} while (choice !== newActionsList.length);
+} while (choice !== actionsList.length);
