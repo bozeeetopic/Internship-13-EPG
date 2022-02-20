@@ -1,4 +1,5 @@
 import { programs, channels } from "./data/tvSchedule.js";
+import { Time } from "./data/time.js";
 import { actionType } from "./enums/actionType.js";
 import { addRating } from "./actions/addRating.js";
 import { changePin } from "./actions/changePin.js";
@@ -8,12 +9,21 @@ import { programDetails } from "./actions/programDetails.js";
 import { chooseNumberBetween } from "./helpers/numberInput.js";
 import { programsListToString } from "./helpers/programsListToString.js";
 import { currentDateToTime } from "./helpers/currentDateToTime.js";
-import { Time } from "./data/time.js";
 
 let timeNow = currentDateToTime();
 
-let programList = localStorage.getItem("programs");
-programList = programList ? JSON.parse(programList) : [...programs];
+let programListFromStorage = JSON.parse(localStorage.getItem("programs"));
+let programList = [...programs];
+
+if (programListFromStorage != null) {
+  programListFromStorage.forEach((programFromStorage) => {
+    let programToChange = programList.find(
+      (changingProgram) => changingProgram.id === programFromStorage.id
+    );
+    programToChange.favourite = programFromStorage.favourite;
+    programToChange.rating = programFromStorage.rating;
+  });
+}
 
 let schedule = programList.filter(
   (program) =>

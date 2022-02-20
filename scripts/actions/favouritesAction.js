@@ -1,6 +1,8 @@
 function favouritesAction(programList, idToChange) {
-  programThatChanges = programList.find((program) => program.id === idToChange);
-  confirmString = programThatChanges.favourite
+  let programThatChanges = programList.find(
+    (program) => program.id === idToChange
+  );
+  let confirmString = programThatChanges.favourite
     ? "Ukloniti iz favorita?"
     : "Dodati u favorite";
   if (confirm(confirmString)) {
