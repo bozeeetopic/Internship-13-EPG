@@ -546,7 +546,7 @@ let programs = [
     true,
     true,
     10,
-    6
+    5
   ),
   new TvProgram(
     46,
@@ -558,7 +558,7 @@ let programs = [
     true,
     true,
     10,
-    6
+    5
   ),
   new TvProgram(
     47,
@@ -570,7 +570,7 @@ let programs = [
     true,
     true,
     10,
-    6
+    5
   ),
   new TvProgram(
     48,
@@ -582,7 +582,7 @@ let programs = [
     true,
     true,
     10,
-    6
+    5
   ),
   new TvProgram(
     49,
@@ -594,7 +594,7 @@ let programs = [
     true,
     true,
     10,
-    6
+    5
   ),
   new TvProgram(
     50,
@@ -606,7 +606,7 @@ let programs = [
     true,
     true,
     10,
-    6
+    5
   ),
   new TvProgram(
     51,
@@ -618,7 +618,7 @@ let programs = [
     true,
     true,
     10,
-    6
+    5
   ),
   new TvProgram(
     52,
@@ -630,7 +630,7 @@ let programs = [
     true,
     true,
     10,
-    6
+    5
   ),
   new TvProgram(
     53,
@@ -642,7 +642,7 @@ let programs = [
     true,
     true,
     10,
-    6
+    5
   ),
 ];
 

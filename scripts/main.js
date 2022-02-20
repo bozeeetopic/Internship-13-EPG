@@ -44,7 +44,7 @@ do {
 
   switch (newActionsList[choice - 1].function) {
     case actionType.channelUp:
-      currentChannel = currentChannel ? 4 : currentChannel - 1;
+      currentChannel = currentChannel == 0 ? 4 : currentChannel - 1;
       timeNow = currentDateToTime();
       schedule = programList.filter(
         (program) =>
