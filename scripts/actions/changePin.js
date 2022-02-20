@@ -7,7 +7,12 @@ function changePin() {
   if (pin == userPinInput) {
     do {
       userPinInput = prompt("Unesite novi pin!");
-    } while (userPinInput.length < 4 && userPinInput.length > 8);
+    } while (
+      userPinInput.length < 4 ||
+      userPinInput.length > 8 ||
+      !userPinInput.match(/^[0-9]*$/)
+    );
+    localStorage.setItem("pin", userPinInput);
     return;
   }
   alert("Krivo unesen pin!");

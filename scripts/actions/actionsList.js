@@ -18,6 +18,7 @@ let actionsList = [
   { name: "Dodaj ocjenu na emisiju", function: actionType.addRating },
   { name: "Pogledaj detalje emisije", function: actionType.programDetails },
   { name: "Promjeni roditeljski pin", function: actionType.changePin },
+  { name: "Pogledaj sve favorite", function: actionType.favourites },
   { name: "Izlaz", funtion: actionType.exit },
 ];
 

@@ -1,9 +1,3 @@
-import { Time } from "./data/time.js";
-import { programs, channels } from "./data/tvSchedule.js";
-import { category } from "./enums/category.js";
-import { actionType } from "./enums/actionType.js";
-import { actionsList } from "./actions/actionsList.js";
-
 let pin = localStorage.getItem("pin");
 pin = pin ? pin : "1111";
 //localStorage.setItem("pin", pin);

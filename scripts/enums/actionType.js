@@ -7,7 +7,8 @@ const actionType = {
   addRating: 6,
   programDetails: 7,
   changePin: 8,
-  exit: 9,
+  favourites: 9,
+  exit: 10,
 };
 
 export { actionType };
